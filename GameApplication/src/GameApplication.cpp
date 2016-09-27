@@ -7,6 +7,7 @@ GameApplication::GameApplication()
 	m_WindowHeight = 480;
 	m_WindowCreationFlags = 0;
 	m_WindowTitle = "Game";
+	m_pWindow = nullptr;
 }
 
 GameApplication::~GameApplication()
@@ -42,6 +43,16 @@ bool GameApplication::init(int args,char * arg[])
 	m_WindowWidth = m_Options.getOptionAsInt("WindowWidth");
 	m_WindowHeight = m_Options.getOptionAsInt("WindowHeight");
 	m_WindowTitle = m_Options.getOption("WindowTitle");
+
+
+	//Create a window
+	m_pWindow = SDL_CreateWindow(m_WindowTitle.c_str(), // window title
+		0, //x position
+		0, // y postion
+		m_WindowWidth, // width, in pixels
+		m_WindowHeight, //height, in pixels
+		m_WindowCreationFlags //flags
+	);
 
 	return true;
 }

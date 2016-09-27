@@ -9,6 +9,11 @@
 class GameApplication:public NonCopyable
 {
 public:
+
+	void createWindow(cons string& windowTitle,
+		const unsigned int width, const unsigned int height,
+		const unsigned int windowflags = 0);
+
 	//Constructor
 	GameApplication();
 	//Virtual Deconstructor
@@ -20,6 +25,9 @@ public:
 	//Basically runs our game
 	void run();
 protected:
+
+	SDL_Window * m_pWindow;
+
 	ProgramOptions m_Options;
 
 	unsigned int m_WindowWidth;
@@ -28,5 +36,16 @@ protected:
 	string m_WindowTitle;
 
 	void parseConfig(int args,char * arg[]);
-};
+
+		//init everything - SDL, if it is nonzero we have a problem
+		if (SDL_Init(SDL_INIT_EVERYTHING) !+ 0)
+		{
+
+			LOG(ERROR, "SDL can't be initialised %s", SDL_GetError());
+
+			return false;
+
+		}
+
+}
 #endif
